@@ -1,0 +1,262 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20%">
+    <mat-toolbar>
+        <div fxFlex="100">
+            <div fxLayout="row" fxFlex="15" fxLayoutGap="25%">
+                <div fxFlex="5">
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon matTooltip="menu">menu</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="5">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png">
+                </div>
+                <div class="fundoo" fxFlex="5">
+                    <span style="margin-right: 8px">Fundoo Notes</span>
+                </div>
+            </div>
+
+            <div fxFlex="60" fxLayout="row">
+                
+                <mat-card class="search-bar">
+                    <button mat-icon-button >
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <input class="search" (input)="onSearch($event.target.value)" matInput placeholder="Search"  style="width: 450px;" autocomplete="off">
+                </mat-card>
+            
+            </div>
+
+            <div fxFlex="35" fxLayout="row" fxLayoutGap="12%" style="margin-left: 100px; margin-top: 8px;">
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="Refresh">refresh</mat-icon>
+                    </button>
+
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="Grid_view">view_agenda</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="settings">settings</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button>
+                        <mat-icon matTooltip="app">apps</mat-icon>
+                    </button>
+                </div>
+                <div fxFlex="7">
+                    <button mat-icon-button (click)="Profile()"> -->
+                       
+                          <mat-icon matTooltip="account" [matMenuTriggerFor]="more_option">
+                             
+                          </mat-icon> 
+                     </button> 
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+
+</div>
+<div>
+        <hr style="margin-top: 0px;">
+</div>
+<mat-sidenav-container class="example-container">
+    
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" class="mat-sidenav">
+        <mat-nav-list class="navigationlist">
+            <mat-list>
+
+                <div>
+                    <button style="width: 238px;border-radius: 20px" mat-button (click)="onNotes()">
+                        <mat-icon style="padding-right: 138px">lightbulb_outline</mat-icon>
+                        <span style="margin-right: 125px;margin-left: -106px">Notes</span>
+                    </button>
+                </div>
+
+                <div>
+                    <button mat-button style="width: 238px;border-radius: 20px" [routerLink]="['remainder']">
+                        <mat-icon style="padding-right: 108px">notifications_none</mat-icon>
+                        <span style="margin-right: 80px;margin-left: -76px">Reminders</span>
+                    </button>
+                    <hr>
+                </div>
+                <div style="padding-left: 27px">
+                    <span>
+                        <h5>LABELS</h5>
+                    </span>
+                </div>
+                <div *ngFor="let item of notesList" fxLayout="row">
+                        <button mat-button (click)="showLabelNotes()" style="height: 0px;">
+                                <mat-icon [matTooltip]="label">label</mat-icon>
+                           </button>
+                    <p style="margin-left: 22px;margin-top: 10px;">{{item.labelName}}</p>
+                   
+                    
+                </div>
+                <div>
+                    <button mat-button style="border-radius: 54px; width: 239px;" (click)="editLabel()">
+                        <mat-icon style="padding-right: 94px">edit</mat-icon>
+                        <span style="margin-right: 84px;margin-left: -62px"> Edit Labels</span>
+                    </button>
+
+                </div>
+                <hr>
+                <div>
+                    <button mat-button style="border-radius: 20px;width: 239px" (click)="getArchive()">
+                        <mat-icon style="padding-right: 134px;">
+                            archive
+                        </mat-icon>
+                        <span style="margin-right: 104px;margin-left: -96px">Archive</span>
+                    </button>
+                </div>
+                <div>
+                    <button mat-button style="border-radius: 25px;width: 238px;" (click)="getTrash()">
+                        <mat-icon style="padding-right: 162px;">
+                            delete
+                        </mat-icon>
+                        <span style="margin-right: 135px;
+                            margin-left: -122px;">Bin</span>
+                    </button>
+                    
+                </div>
+
+
+
+            </mat-list>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            <router-outlet></router-outlet>
+         
+       </mat-sidenav-content>
+</mat-sidenav-container>
+<div>
+    <mat-menu #more_option>
+        <button mat-icon mat-flat-button color="primary" (click)="onLogout()" class="button">
+            Logout
+        </button>
+    </mat-menu>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div style="height: 100vh;" id="here" fxLayout="row" class="main-class">
+    <mat-toolbar style="background: white; border-bottom:5px  black" >
+    
+            <span><button mat-button (click)="sidenav.toggle()"> <mat-icon>dehaze</mat-icon> </button></span>
+            <div>
+                <img mat-img src="https://ssl.gstatic.com/keep/keep.ico" />
+            </div>
+             <div fxFlex="10" > <h1>{{fundooTitle}}</h1></div>
+          
+           <div  class ="searchbox"fxFlex="60" fxLayoutAlign="space-between center" style="height: 38px">
+            <mat-icon >search</mat-icon>
+                    <input   matInput placeholder="Search" >      
+           </div>
+    
+                 <div>
+                    <button mat-icon-button matTooltip="refresh" 
+                    aria-label="Button that displays a tooltip when focused or hovered over"(click)="refresh()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
+    
+                <div>
+                    <button mat-icon-button matTooltip="list view">
+                        <mat-icon>view_agenda</mat-icon>
+                    </button>
+                </div>
+    
+                <div>
+                    <button mat-icon-button matTooltip="setting">
+                        <mat-icon style="font-size:25px">settings</mat-icon>
+                    </button>
+                </div>
+    
+                <div fxLayout="wrap-row" fxLayoutAlign="space-evenly center" class="icons">
+                    <button mat-icon-button mat-toolbar matTooltip="apps">
+                        <mat-icon>apps</mat-icon>
+                    </button>
+                </div>
+    
+                <div fxLayout="wrap-row" fxLayoutAlign="space-evenly center">
+                    <button mat-icon-button mat-toolbar matTooltip="account"mat-raised-button (click)="openBottomSheet()">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                </div>
+    
+      </mat-toolbar>
+    
+      <mat-sidenav-container class="example-container" >
+          <mat-sidenav class="nav-side" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                       (closed)="events.push('close!')">
+                       <div fxLayout="column"  fxLayoutAlign="center start "  >
+            <div (click)="onNotes()"  style="width: 200px; height: 50px"  fxLayout="row" fxLayoutAlign="space-evenly center"> <mat-icon >lightbulb_outline</mat-icon>NOTES </div>
+            <div (click)="onReminder()" style="width: 200px; height: 50px;  border-bottom:1px solid black" fxLayout="row" fxLayoutAlign="space-evenly center">  <mat-icon >notifications</mat-icon>Reminder </div>
+            <div  style="width: 250px; height: 50px;" fxLayout="row" fxLayoutAlign="start center"><b>Labels</b></div>
+            <div (click)="onEditLabel()" style="width: 200px; height: 50px; border-bottom:1px solid black"  fxLayout="row" fxLayoutAlign="space-evenly center"><mat-icon >create</mat-icon>EditLabel </div>
+            <div (click)="onArchive()" style="width: 200px; height: 50px" fxLayout="row" fxLayoutAlign="space-evenly center"> <mat-icon >archive</mat-icon>Archive </div>
+            <div (click)="onDelete() "style="width: 200px; height: 50px" fxLayout="row" fxLayoutAlign="space-evenly center"> <mat-icon >delete</mat-icon>Trash </div>
+          </div>
+          </mat-sidenav>
+        
+          <mat-sidenav-content>
+            <div>
+                  <div fxLayout="row" fxLayoutAlign="center center">
+                     <mat-card style="width: 30%">
+                       <p> <input *ngIf="!matBoolean" (click)="matBoolean = !matBoolean" style="border: none;margin-left: 9px; outline: none; background: whitesmoke"fxFlex='80' autocomplete="off"  matInput placeholder="Take a Note..." ></p>
+                    </mat-card>
+                  </div>
+    
+    
+                  <div fxLayout="row" fxLayoutAlign="center center" class="note">
+                    <mat-card style="width: 30%" *ngIf="matBoolean" >
+    
+                        <mat-card-content class="create-note" >
+                           <p> <input style="border: none;margin-left: 9px; outline: none; background: whitesmoke"fxFlex='80' autocomplete="off"  matInput placeholder="Title" ></p>
+                           <p> <input style="border: none;margin-left: 9px; outline: none; background: whitesmoke"fxFlex='80' autocomplete="off"  matInput placeholder="Take a Note..." ></p>
+                      </mat-card-content>
+                  
+               
+                     </mat-card>
+                   </div>
+              </div>
+    
+          </mat-sidenav-content>
+        </mat-sidenav-container>
+        </div> -->
